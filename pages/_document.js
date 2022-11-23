@@ -25,6 +25,12 @@ class MyDocument extends Document {
         <body className={'tracking-wider subpixel-antialiased bg-day dark:bg-night'}>
             <Main />
             <NextScript />
+            <div class="Canvas" style="position: fixed; right: 10px; bottom: 10px;z-index: 99999999" id="L2dCanvas"></div>
+            <script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/pixi.js@4.6.1/dist/pixi.min.js"></script>
+            <!-- live2dv3.js -->
+            <script src="https://cdn.jsdelivr.net/npm/live2dv3@1.2.2/live2dv3.min.js"></script>
+            <script>window.onload = () => {new l2dViewer({el: document.getElementById('L2dCanvas'),basePath: 'https://cdn.jsdelivr.net/gh/KelsAstell/Live2dV3@latest/assets',modelName: 'Live2D',sounds: ['']})}</script>
         </body>
       </Html>
     )
