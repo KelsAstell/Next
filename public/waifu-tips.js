@@ -110,8 +110,9 @@ const $$ = (selector)=>{
         return null;
     }
 }
-const re = Powered by Chocolate and Love.;
-console.log(re);
+console.log("%c Powered by %c Chocolate and Love. ",
+            'color:#fff;background-color:blue;line-height:20px;border-radius: 5px 0 0 5px',
+            'color:#fff;background-color:orange;line-height:20px;border-radius: 0 5px 5px 0');
 const live2dId2 = 'live2d2';
 const live2dId4 = 'live2d4';
 const waifuTips = $$('#waifu-message');
