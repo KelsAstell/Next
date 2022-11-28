@@ -45,7 +45,7 @@
   <td align="center"><a href="https://github.com/qfdk"><img src="https://avatars.githubusercontent.com/u/2404478" width="64px;"  alt="qfdk"/><br/><sub><b>qfdk</b></sub></a><br/><a href="https://github.com/tangly1024/NotionNext/commits?author=qfdk" title="qfdk" >🔧 🐛</a></td>
   
   <td align="center"><a href="https://github.com/ifyz"><img src="https://avatars.githubusercontent.com/u/118271360" width="64px;"  alt="ifyz"/><br/><sub><b>ifyz</b></sub></a><br/><a href="https://github.com/tangly1024/NotionNext/commits?author=ifyz" title="ifyz" >🔧 🐛</a></td>
-  <td align="center"><a href="https://github.com/ifyz"><img src="https://avatars.githubusercontent.com/u/33265134" width="64px;"  alt="Kels_Astell"/><br/><sub><b>Kels_Astell</b></sub></a><br/><a href="https://github.com/KelsAstell/Next/commits?author=KelsAstell" title="KelsAstell" >🔧 🎨 </a></td>
+  <td align="center"><a href="https://github.com/KelsAstell"><img src="https://avatars.githubusercontent.com/u/33265134" width="64px;"  alt="Kels_Astell"/><br/><sub><b>Kels_Astell</b></sub></a><br/><a href="https://github.com/KelsAstell/Next/commits?author=KelsAstell" title="KelsAstell" >🔧 🎨 </a></td>
 </tr>
 </table>
 
