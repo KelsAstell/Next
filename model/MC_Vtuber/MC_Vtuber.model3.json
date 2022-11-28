@@ -1,0 +1,26 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "MC_Vtuber.moc3",
+		"Textures": [
+			"MC_Vtuber.2048/texture_00.png",
+			"MC_Vtuber.2048/texture_01.png",
+			"MC_Vtuber.2048/texture_02.png",
+			"MC_Vtuber.2048/texture_03.png"
+		],
+		"Physics": "MC_Vtuber.physics3.json",
+		"DisplayInfo": "MC_Vtuber.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		}
+	]
+}
