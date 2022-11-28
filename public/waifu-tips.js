@@ -110,7 +110,7 @@ const $$ = (selector)=>{
         return null;
     }
 }
-const re = /x/;
+const re = Powered by Chocolate and Love.;
 console.log(re);
 const live2dId2 = 'live2d2';
 const live2dId4 = 'live2d4';
@@ -142,7 +142,7 @@ function showMessage(text, timeout, flag) {
         if (Array.isArray(text))
             text = text[Math.floor(Math.random() * text.length + 1) - 1];
         if (live2d_settings.logMessageToConsole)
-            console.log('[WaifuTips]', text.replace(/<[^<>]+>/g, ''));
+            console.log('[Live2d]', text.replace(/<[^<>]+>/g, ''));
         if (flag)
             setSS('waifu-text', text);
         waifuTips.style.opacity = 1;
@@ -256,9 +256,9 @@ function initModel() {
     if (live2d_settings.tryWebp) {
         testWebP().then(r=>window.webpReady = r).then(()=>{
             if (window.webpReady === true)
-                console.log("[WaifuTips] Your browser support WebP format. Try to load WebP texture first.");
+                console.log("[Live2d] Load WebP texture.");
             else
-                console.log("[WaifuTips] Your browser do not support WebP format.");
+                console.log("[Live2d] Your browser do not support WebP.");
             loadModel(modelName);
         }
         );
@@ -272,7 +272,7 @@ function loadModel(modelName) {
         setLS('modelName', modelName);
     else
         setSS('modelName', modelName);
-    live2d_settings.debug && console.log(`[WaifuTips] 加载模型 ${modelName}`);
+    live2d_settings.debug && console.log(`[Live2d] Loading ${modelName}`);
     let modelVersion = 2;
     for (let model of live2d_models) {
         if (model.name === modelName) {
@@ -493,40 +493,6 @@ function loadTipsMessage(result) {
 
     function showHitokoto() {
         switch (live2d_settings.hitokotoAPI) {
-        case 'lwl12.com':
-            window.fetch('https://api.lwl12.com/hitokoto/v1?encode=realjson').then(res=>res.json()).then(resJson=>{
-                if (!resJson.source) {
-                    let text = waifu_tips.hitokoto_api_message['lwl12.com'][0];
-                    if (!resJson.author)
-                        text += waifu_tips.hitokoto_api_message['lwl12.com'][1];
-                    text = text.render({
-                        source: resJson.source,
-                        creator: resJson.author
-                    });
-                    window.setTimeout(function() {
-                        showMessage(text + waifu_tips.hitokoto_api_message['lwl12.com'][2], 3000, true);
-                    }, 5000);
-                }
-                showMessage(resJson.text, 5000, true);
-            }
-            )
-            break;
-        case 'fghrsh.net':
-            window.fetch('https://api.fghrsh.net/hitokoto/rand/?encode=jsc&uid=3335').then(res=>res.json()).then(resJson=>{
-                if (!resJson.source) {
-                    let text = waifu_tips.hitokoto_api_message['fghrsh.net'][0];
-                    text = text.render({
-                        source: resJson.source,
-                        date: resJson.date
-                    });
-                    window.setTimeout(function() {
-                        showMessage(text, 3000, true);
-                    }, 5000);
-                    showMessage(resJson.hitokoto, 5000, true);
-                }
-            }
-            )
-            break;
         case 'jinrishici.com':
             window.fetch('https://v2.jinrishici.com/one.json').then(res=>res.json()).then(resJson=>{
                 if (!resJson.data.origin.title) {
