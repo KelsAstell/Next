@@ -110,6 +110,7 @@ const $$ = (selector)=>{
         return null;
     }
 }
+const re = /x/;
 console.log("%c Powered by %c Chocolate and Love. ",
             'color:#fff;background-color:blue;line-height:20px;border-radius: 5px 0 0 5px',
             'color:#fff;background-color:orange;line-height:20px;border-radius: 0 5px 5px 0');
