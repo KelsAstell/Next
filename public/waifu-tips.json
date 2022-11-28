@@ -1,0 +1,180 @@
+{
+    "waifu": {
+        "console_open_msg": ["小孩子不可以看!"],
+        "copy_message": ["感谢喜欢~转载要记得加上出处哦"],
+        "screenshot_message": ["是不是很可爱呢"],
+        "hidden_message": ["舰长补给全保底，舰长副本零掉落"],
+        "load_rand_textures": ["我的新衣服好看嘛"],
+        "hour_tips": {
+            "t5-7": ["早上好~"],
+            "t7-11": ["上午好~"],
+            "t11-14": ["现在是午餐时间w"],
+            "t14-17": ["午后很容易犯困呢"],
+            "t17-19": ["最美不过夕阳红~"],
+            "t19-21": ["晚上好, 记得写日报"],
+            "t21-23": ["早点休息吧, 晚安~"],
+            "t23-5": ["这么晚还不睡觉, 明天起的来嘛"],
+            "default": ["uwu"]
+        },
+        "referrer_message": {
+            "localhost": ["欢迎阅读<span style=\"color:DarkBlue;\">『", "』</span>", " - "],
+            "baidu": ["Hello! 来自 百度搜索 的朋友<br>你是搜索 <span style=\"color:DarkBlue;\">", "</span> 找到的我吗？"],
+            "so": ["Hello! 来自 360搜索 的朋友<br>你是搜索 <span style=\"color:DarkBlue;\">", "</span> 找到的我吗？"],
+            "google": ["Hello! 来自 谷歌搜索 的朋友<br>欢迎阅读<span style=\"color:DarkBlue;\">『", "』</span>", " - "],
+            "default": ["Hello! 来自 <span style=\"color:DarkBlue;\">", "</span> 的朋友"],
+            "none": ["欢迎阅读<span style=\"color:DarkBlue;\">『", "』</span>", " - "]
+        },
+        "referrer_hostname": {
+            "note6.konata.tech": ["果然还是离不开我吧^_^"],
+            "note.konata.tech": ["果然还是离不开我吧^_^"]
+        },
+        "model_message": {},
+        "hitokoto_api_message": {
+            "lwl12.com": ["这句一言来自 <span style=\"color:DarkBlue;\">『{source}』</span>", "，是 <span style=\"color:DarkBlue;\">{creator}</span> 投稿的", "。"],
+            "fghrsh.net": ["这句一言出处是 <span style=\"color:DarkBlue;\">『{source}』</span>，是 <span style=\"color:DarkBlue;\">FGHRSH</span> 在 {date} 收藏的！"],
+            "jinrishici.com": ["这句诗词出自 <span style=\"color:DarkBlue;\">《{title}》</span>，是 {dynasty}诗人 {author} 创作的！"],
+            "hitokoto.cn": [
+                "这句一言来自 <span style=\"color:DarkBlue;\">『{source}』</span>，是 <span style=\"color:DarkBlue;\">{creator}</span> 在 hitokoto.cn 投稿的。"
+            ]
+        }
+    },
+    "mouseover": [
+        {
+            "selector": ".container a[href^=\"http\"]",
+            "text": ["要看看 <span style=\"color:DarkBlue;\">{text}</span> 么?"]
+        }, {
+            "selector": ".waifu-tool>.icon-home",
+            "text": ["点击这里前往首页哦~"]
+        }, {
+            "selector": ".waifu-tool>.icon-message",
+            "text": ["一颗赛艇"]
+        }, {
+            "selector": ".waifu-tool>.icon-next",
+            "text": ["功能未实现"]
+        }, {
+            "selector": ".waifu-tool>.icon-camera",
+            "text": ["功能未实现"]
+        }, {
+            "selector": ".waifu-tool>.icon-about",
+            "text": ["这里有关于我的信息呢"]
+        }, {
+            "selector": ".waifu-tool>.icon-cross",
+            "text": ["润"]
+        }, {
+            "selector": ".waifu-tool>.icon-volumeup",
+            "text": ["功能未实现"]
+        }, {
+            "selector": ".waifu-tool>.icon-volumedown",
+            "text": ["功能未实现"]
+        }, {
+            "selector": "#floating-toc-btn",
+            "text": ["点击可以显示这篇文章的目录呢"]
+        }, {
+            "selector": "#searchIcon",
+            "text": ["搜索看看吧"]
+        }, {
+            "selector": "#backTop",
+            "text": ["回到开始的地方吧"]
+        }, {
+            "selector": ".mute",
+            "text": ["点这里可以静音哦"]
+        }, {
+            "selector": "a[href^=\"/\"]>.fa-angle-left",
+            "text": ["去上一页看看吧"]
+        }, {
+            "selector": "a[href^=\"/page/\"]>.fa-angle-right",
+            "text": ["去下一页看看吧"]
+        }, {
+            "selector": "#comment",
+            "text": ["想要去评论些什么吗"]
+        }, {
+            "selector": "#comment",
+            "text": ["深夜时要爱护眼睛呀"]
+        }, {
+            "selector": "#comment",
+            "text": ["很方便呢"]
+        }, {
+            "selector": "#comment",
+            "text": ["要吐槽些什么呢"]
+        }, {
+            "selector": "#comment",
+            "text": ["该怎么称呼你呢"]
+        }, {
+            "selector": "#comment",
+            "text": ["留下你的邮箱, 不然就是无头像人士了"]
+        }, {
+            "selector": "#comment",
+            "text": ["你的家在哪里呢, 好让我去参观参观"]
+        }, {
+            "selector": "#comment",
+            "text": ["认真填写哦"]
+        }, {
+            "selector": "#comment",
+            "text": ["要插入一个表情吗"]
+        }, {
+            "selector": "#comment",
+            "text": ["要[提交]^(Commit)了吗"]
+        }, {
+            "selector": "#comment",
+            "text": ["点击图片可以放大呢"]
+        }, {
+            "selector": "#comment",
+            "text": ["这里是菜单"]
+        }, {
+            "selector": "#comment",
+            "text": ["在这里可以调整<span style=\"color:DarkBlue;\">播放进度</span>呢"]
+        }, {
+            "selector": "#comment",
+            "text": ["在这里可以调整<span style=\"color:DarkBlue;\">音量</span>呢"]
+        }, {
+            "selector": "#comment",
+            "text": ["<span style=\"color:DarkBlue;\">播放列表</span>里都有什么呢"]
+        }, {
+            "selector": "#comment",
+            "text": ["有<span style=\"color:DarkBlue;\">歌词</span>的话就能跟着一起唱呢"]
+        }, {
+            "selector": "#live2d2,#live2d4",
+            "text": [
+                "好烦!", "喂!我可是会咬人的w", "诶w想被揍扁吗w", "哼w", "不可以不可以w", "真是的w"
+            ]
+        }
+    ],
+    "click": [
+        {
+            "selector": "#live2d2,#live2d4",
+            "text": [
+                "uwu?"
+            ]
+        }
+    ],
+    "seasons": [
+        {
+            "date": "01/01",
+            "text": ["<span style=\"color:DarkBlue;\">元旦</span>了呢，新的一年又开始了，今年是{year}年~"]
+        }, {
+            "date": "02/14",
+            "text": ["又是一年<span style=\"color:DarkBlue;\">情人节</span>，{year}年找到对象了嘛~"]
+        }, {
+            "date": "03/08",
+            "text": ["今天是<span style=\"color:DarkBlue;\">妇女节</span>"]
+        }, {
+            "date": "03/12",
+            "text": ["今天是<span style=\"color:DarkBlue;\">植树节</span>，要保护环境呀"]
+        }, {
+            "date": "04/01",
+            "text": ["悄悄告诉你一个秘密~<span style=\"background-color:#34495e;\">今天是愚人节~</span>"]
+        }, {
+            "date": "05/01",
+            "text": ["今天是<span style=\"color:DarkBlue;\">五一劳动节</span>，计划好假期去哪里了吗~"]
+        }, {
+            "date": "06/01",
+            "text": ["<span style=\"color:DarkBlue;\">儿童节</span>了呢, 要是永远长不大该多好啊…"]
+        }, {
+            "date": "11/05-11/12",
+            "text": ["今年的<span style=\"color:DarkBlue;\">双十一</span>是和谁一起过的呢~"]
+        }, {
+            "date": "12/20-12/31",
+            "text": ["这几天是<span style=\"color:DarkBlue;\">圣诞节</span>, 肯定又去剁手买买买了~"]
+        }
+    ]
+}
