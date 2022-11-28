@@ -17,10 +17,10 @@ export const Fireworks = () => {
    * @param config
    */
 function createFireworks(config) {
-  const defaultColors = ['102, 167, 221', '62, 131, 225', '33, 78, 194']
+  const defaultColors = ['180, 233, 39', '0, 255, 204', '223, 96, 32']
   const defaultConfig = {
     colors: defaultColors,
-    numberOfParticules: 20,
+    numberOfParticules: 30,
     orbitRadius: {
       min: 50,
       max: 100
@@ -30,12 +30,12 @@ function createFireworks(config) {
       max: 20
     },
     diffuseRadius: {
-      min: 50,
-      max: 100
+      min: 90,
+      max: 180
     },
     animeDuration: {
-      min: 900,
-      max: 1500
+      min: 1200,
+      max: 2000
     }
   }
   config = Object.assign(defaultConfig, config)

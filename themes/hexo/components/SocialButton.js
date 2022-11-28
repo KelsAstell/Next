@@ -9,7 +9,7 @@ import React from 'react'
 const SocialButton = () => {
   return <div className='w-full justify-center flex-wrap flex'>
     <div className='space-x-3 text-xl text-gray-600 dark:text-gray-300 '>
-      {BLOG.CONTACT_GITHUB && <a target='_blank' rel='noreferrer' title={'github'} href={BLOG.CONTACT_GITHUB} >
+      {BLOG.CONTACT_GITHUB && <a target='_blank' rel='noreferrer' title={'github'} href="https://github.com/KelsAstell/" >
         <i className='transform hover:scale-125 duration-150 fab fa-github dark:hover:text-indigo-400 hover:text-indigo-600'/>
       </a>}
       {BLOG.CONTACT_TWITTER && <a target='_blank' rel='noreferrer' title={'twitter'} href={BLOG.CONTACT_TWITTER} >
