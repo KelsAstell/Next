@@ -1,77 +1,29 @@
-/*****************************************************************************************************
- く__,.ヘヽ.　　　　/　,ー､ 〉
- 　　　　　＼ ', !-─‐-i　/　/´
- 　　　 　 ／｀ｰ'　　　 L/／｀ヽ､                 Live2D Widget Setting
- 　　 　 /　 ／,　 /|　 ,　 ,　　　 ',               Version 2.0.0
- 　　　ｲ 　/ /-‐/　ｉ　L_ ﾊ ヽ!　 i                     Konata
- 　　　 ﾚ ﾍ 7ｲ｀ﾄ　 ﾚ'ｧ-ﾄ､!ハ|　 |
- 　　　　 !,/7 '0'　　 ´0iソ| 　 |　　　
- 　　　　 |.从"　　_　　 ,,,, / |./ 　 |      Add Live2D widget in your website.
- 　　　　 ﾚ'| i＞.､,,__　_,.イ / 　.i 　|
- 　　　　　 ﾚ'| | / k_７_/ﾚ'ヽ,　ﾊ.　|       Thanks:
- 　　　　　　 | |/i 〈|/　 i　,.ﾍ |　i　|    fghrsh / https://www.fghrsh.net/post/123.html
- 　　　　　　.|/ /　ｉ： 　 ﾍ!　　＼　|       journey-ad / https://github.com/journey-ad/live2d_src
- 　　　 　 　 kヽ>､ﾊ 　 _,.ﾍ､ 　 /､!         xiazeyu / https://github.com/xiazeyu/live2d-widget.js
- 　　　　　　 !'〈//｀Ｔ´', ＼ ｀'7'ｰr'      Cubism Web Framework & All model authors.
- 　　　　　　 ﾚ'ヽL__|___i,___,ンﾚ|ノ
- 　　　　　 　　　ﾄ-,/　|___./
- 　　　　　 　　　'ｰ'　　!_,.
- ****************************************************************************************************/
 const live2d_settings = {
-    // 基本设置
     'modelUrl': 'model',
-    // 存放模型的文件夹路径，末尾不需要斜杠
     'tipsMessage': 'waifu-tips.json',
-    // 看板娘提示消息文件的路径，可以留空不加载
-    // 模型设置
     'modelName': 'MC_Vtuber',
-    // 默认加载的模型名称，仅在无本地记录的情况下有效
     'modelStorage': true,
-    // 记忆模型，下次打开页面会加载上次选择的模型
     'modelRandMode': false,
-    // 随机切换模型
     'preLoadMotion': false,
-    // 是否预载动作数据，只对 model3 模型有效，不预载可以提高 model3 模型的加载速度，但可能导致首次触发动作时卡顿
     'tryWebp': true,
-    // 如果浏览器支持 WebP 格式，将优先加载 WebP 格式的贴图，例如默认贴图文件为 klee.8192/texture_00.png，
-    // 启用后将优先加载 klee.8192/texture_00.png.webp，文件不存在会自动 fallback
-    // 工具栏设置
     'showToolMenu': true,
-    // 显示 工具栏
     'canCloseLive2d': true,
-    // 显示 关闭看板娘 按钮
     'canSwitchModel': false,
-    // 显示 模型切换 按钮
-    'canSwitchHitokoto': true,
-    // 显示 一言切换 按钮
+    'canSwitchHitokoto': false,
     'canTakeScreenshot': false,
-    // 显示 看板娘截图 按钮
-    'canTurnToHomePage': true,
-    // 显示 返回首页 按钮
+    'canTurnToHomePage': false,
     'canTurnToAboutPage': true,
-    // 显示 跳转关于页 按钮
     'showVolumeBtn': false,
-    // 显示 音量控制 按钮，仅作显示，相关逻辑需自己实现
-    // 提示消息设置
     'showHitokoto': true,
-    // 空闲时显示一言
     'hitokotoAPI': '',
-    // 一言 API，可选 'hitokoto.cn'(默认), 'lwl12.com', 'jinrishici.com'(古诗词), 'fghrsh.net'
     'showWelcomeMessage': true,
-    // 显示进入页面欢迎词
     'showCopyMessage': true,
-    // 显示复制内容提示，默认只对 '#articleContent' 元素内的复制进行监视，如果你的文章内容不在这个标签下，可以在下方搜索并修改
     'showF12OpenMsg': true,
-    // 显示控制台打开提示
-    //看板娘样式设置
     'live2dHeight': 680,
-    // 看板娘高度，不需要单位
     'live2dWidth': 500,
-    // 看板娘宽度，不需要单位
     'waifuMinWidth': 'disable',
-    // 页面小于宽度小于指定数值时隐藏看板娘，例如 'disable'(禁用)，推荐 '1040px'
     'waifuEdgeSide': 'right:0',
-    'debug': true,
+    'debug': false,
     // 全局 DEBUG 设置
     'debugMousemove': false,
     'logMessageToConsole': true,
@@ -90,8 +42,7 @@ const live2d_models = [{
     message: 'SDK4 official sample Rice <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',
     version: 3
 }, ]
-/****************************************************************************************************/
-// SessionStorage LocalStorage 操作
+
 const setSS = (k,v)=>{
     try {
         sessionStorage.setItem(k, v);
@@ -239,8 +190,7 @@ function initModel() {
     } else {
         waifu.classList.remove('hide');
     }
-    /* console welcome message */
-//    console.log("\u304f__,.\u30d8\u30fd.\u3000\u3000\u3000\u3000/\u3000,\u30fc\uff64 \u3009\n\u3000\u3000\u3000\u3000\u3000\uff3c ', !-\u2500\u2010-i\u3000/\u3000/\u00b4\n\u3000\u3000\u3000 \u3000 \uff0f\uff40\uff70'\u3000\u3000\u3000 L/\uff0f\uff40\u30fd\uff64\n\u3000\u3000 \u3000 /\u3000 \uff0f,\u3000 /|\u3000 ,\u3000 ,\u3000\u3000\u3000 ',\n\u3000\u3000\u3000\uff72 \u3000/ /-\u2010/\u3000\uff49\u3000L_ \uff8a \u30fd!\u3000 i\n\u3000\u3000\u3000 \uff9a \uff8d 7\uff72\uff40\uff84\u3000 \uff9a'\uff67-\uff84\uff64!\u30cf|\u3000 |\n\u3000\u3000\u3000\u3000 !,/7 '0'\u3000\u3000 \u00b40i\u30bd| \u3000 |\u3000\u3000\u3000\n\u3000\u3000\u3000\u3000 |.\u4ece\"\u3000\u3000_\u3000\u3000 ,,,, / |./ \u3000 |\n\u3000\u3000\u3000\u3000 \uff9a'| i\uff1e.\uff64,,__\u3000_,.\u30a4 / \u3000.i \u3000|\n\u3000\u3000\u3000\u3000\u3000 \uff9a'| | / k_\uff17_/\uff9a'\u30fd,\u3000\uff8a.\u3000|\n\u3000\u3000\u3000\u3000\u3000\u3000 | |/i \u3008|/\u3000 i\u3000,.\uff8d |\u3000i\u3000|\n\u3000\u3000\u3000\u3000\u3000\u3000.|/ /\u3000\uff49\uff1a \u3000 \uff8d!\u3000\u3000\uff3c\u3000|\n\u3000\u3000\u3000 \u3000 \u3000 k\u30fd>\uff64\uff8a \u3000 _,.\uff8d\uff64 \u3000 /\uff64!\n\u3000\u3000\u3000\u3000\u3000\u3000 !'\u3008//\uff40\uff34\u00b4', \uff3c \uff40'7'\uff70r'\n\u3000\u3000\u3000\u3000\u3000\u3000 \uff9a'\u30fdL__|___i,___,\u30f3\uff9a|\u30ce\n\u3000\u3000\u3000\u3000\u3000 \u3000\u3000\u3000\uff84-,/\u3000|___./\n\u3000\u3000\u3000\u3000\u3000 \u3000\u3000\u3000'\uff70'\u3000\u3000!_,.:\nLive2D \u770b\u677f\u5a18 v" + live2d_settings.l2dVersion + " / Konata");
+
 
     $$(`#${live2dId2}`).setAttribute('height', live2d_settings.live2dHeight);
     $$(`#${live2dId2}`).setAttribute('width', live2d_settings.live2dWidth);
@@ -273,7 +223,6 @@ function initModel() {
         sessionStorage.setItem('waifuHide', '1');
         window.setTimeout(function() {
             waifu.classList.add('hide');
-            // document.getElementById('show-live2d').classList.remove('btnHide');
         }, 1000);
     }
     )
@@ -325,7 +274,6 @@ function loadModel(modelName) {
         setSS('modelName', modelName);
     live2d_settings.debug && console.log(`[WaifuTips] 加载模型 ${modelName}`);
     let modelVersion = 2;
-    // 在配置中找到要加载模型的版本
     for (let model of live2d_models) {
         if (model.name === modelName) {
             modelVersion = model.version;
@@ -333,7 +281,6 @@ function loadModel(modelName) {
             break;
         }
     }
-    // 如果要加载的模型版本不同，先释放之前的SDK并隐藏canvas
     if (window.live2dCurrentVersion !== modelVersion) {
         if (window.live2dCurrentVersion === 2) {
             window.live2dv2.release();
@@ -343,7 +290,6 @@ function loadModel(modelName) {
             $$(`#${live2dId4}`).style.display = 'none';
         }
     }
-    // 根据模型版本选择不同的SDK加载
     if (modelVersion === 2) {
         $$(`#${live2dId2}`).style.display = 'block';
         window.live2dv2.load(live2dId2, `${live2d_settings.modelUrl}/${modelName}/model.json`);
@@ -356,7 +302,6 @@ function loadModel(modelName) {
     window.live2dCurrentVersion = modelVersion;
 }
 
-// 读取记忆的模型
 function modelStorageGetItem(key) {
     return live2d_settings.modelStorage ? getLS(key) : getSS(key);
 }
@@ -508,7 +453,6 @@ function loadTipsMessage(result) {
                 elseActed();
         }, 1000);
     }
-    /* 检测用户活动状态，并在空闲时显示一言 */
     const addHitokotoListener = ()=>{
         document.addEventListener('mousemove', ()=>(getActed = true))
         document.addEventListener('keydown', ()=>(getActed = true))
@@ -631,12 +575,10 @@ const addStyle = (()=>{
 const blobDownload = (blob)=>{
     if (typeof blob == 'object' && blob instanceof Blob) {
         blob = URL.createObjectURL(blob);
-        // 创建blob地址
     }
     const aLink = document.createElement('a');
     aLink.href = blob;
     aLink.download = live2d_settings.screenshotCaptureName || 'live2d.png';
-    // HTML5新增的属性，指定保存文件名，可以不要后缀，注意，file:///模式下不会生效
     let event;
     if (window.MouseEvent)
         event = new MouseEvent('click');
@@ -669,8 +611,8 @@ margin:auto;
 padding:5px 10px;
 border:1px solid rgba(104,216,255,0.62);
 border-radius:12px;
-background-color:rgba(76,191,255,0.8);
-box-shadow:0 3px 15px 2px rgba(16,51,49,0.3);
+background-color:rgba(244,255,244,0.8);
+box-shadow:0 3px 15px 2px rgba(16,51,49,0.2);
 text-overflow:ellipsis;
 overflow:hidden;
 position:relative;
