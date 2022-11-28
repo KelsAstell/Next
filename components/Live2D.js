@@ -37,7 +37,6 @@ export default function Live2D() {
              <canvas id="live2d2" onClick={handleClick}></canvas>
              <canvas id="live2d4" onClick={handleClick}></canvas>
          </div>
-         <script async type="module" src="https://cdn.jsdelivr.net/gh/KelsAstell/Live2dOnWeb@master/waifu-tips.min.js"></script>
 //  return <canvas id="live2d" className='cursor-pointer' width="280" height="250" onClick={handleClick} alt='切换主题' title='切换主题' />
 }
 

@@ -51,6 +51,7 @@ const MyApp = ({ Component, pageProps }) => {
         <GlobalContextProvider>
             {/* FontawesomeCDN */}
             <link rel="stylesheet" href={BLOG.FONT_AWESOME_PATH} referrerPolicy="no-referrer" />
+            <script async type="module" src="https://cdn.jsdelivr.net/gh/KelsAstell/Live2dOnWeb@master/waifu-tips.min.js"></script>
             {externalPlugins}
             <Component {...pageProps} />
         </GlobalContextProvider>
