@@ -51,7 +51,7 @@ function initLive2D() {
       Promise.all([
         // loadExternalResource('https://cdn.zhangxinxu.com/sp/demo/live2d/live2d/js/live2d.js', 'js')
         loadExternalResource('https://cdn.jsdelivr.net/gh/KelsAstell/Live2dOnWeb@master/dist/live2d_bundle.js', 'js')
-      ]))
+      ])
     }
   }, 300)
 }
