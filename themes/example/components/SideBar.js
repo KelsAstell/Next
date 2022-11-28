@@ -1,5 +1,4 @@
 import BLOG from '@/blog.config'
-import Live2D from '@/components/Live2D'
 import { useGlobal } from '@/lib/global'
 import Link from 'next/link'
 import ExampleRecentComments from './ExampleRecentComments'
@@ -47,7 +46,6 @@ export const SideBar = (props) => {
         </aside>}
 
         <aside className="rounded  overflow-hidden mb-6">
-            <Live2D />
         </aside>
 
     </div>

@@ -25,6 +25,18 @@ class MyDocument extends Document {
         <body className={'tracking-wider subpixel-antialiased bg-day dark:bg-night'}>
             <Main />
             <NextScript />
+            <div id="waifu">
+                         <div id="waifu-message"></div>
+                         <div class="waifu-tool">
+                             <span class="icon-message"></span>
+                             <span class="icon-about"></span>
+                             <span class="icon-cross"></span>
+                         </div>
+                         <canvas id="live2d2" onClick={handleClick}></canvas>
+                         <canvas id="live2d4" onClick={handleClick}></canvas>
+                     </div>
+                     <script src="https://cdn.jsdelivr.net/gh/KelsAstell/Live2dOnWeb@latest/dist/live2d_bundle.js"></script>
+                     <script async type="module" src="https://cdn.jsdelivr.net/gh/KelsAstell/Live2dOnWeb@latest/waifu-tips.min.js"></script>
         </body>
       </Html>
     )

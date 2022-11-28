@@ -52,6 +52,11 @@ function createFireworks(config) {
   /**
      * 设置画布尺寸
      */
+  function handleClick() {
+    if (BLOG.WIDGET_PET_SWITCH_THEME) {
+      switchTheme()
+    }
+  }
   function setCanvasSize(canvasEl) {
     canvasEl.width = window.innerWidth
     canvasEl.height = window.innerHeight
