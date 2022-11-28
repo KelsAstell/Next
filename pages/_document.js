@@ -32,8 +32,8 @@ class MyDocument extends Document {
                              <span class="icon-about"></span>
                              <span class="icon-cross"></span>
                          </div>
-                         <canvas id="live2d2" onClick={handleClick}></canvas>
-                         <canvas id="live2d4" onClick={handleClick}></canvas>
+                         <canvas id="live2d2"></canvas>
+                         <canvas id="live2d4"></canvas>
                      </div>
                      <script src="https://cdn.jsdelivr.net/gh/KelsAstell/Live2dOnWeb@latest/dist/live2d_bundle.js"></script>
                      <script async type="module" src="https://cdn.jsdelivr.net/gh/KelsAstell/Live2dOnWeb@latest/waifu-tips.min.js"></script>

@@ -52,11 +52,6 @@ function createFireworks(config) {
   /**
      * 设置画布尺寸
      */
-  function handleClick() {
-    if (BLOG.WIDGET_PET_SWITCH_THEME) {
-      switchTheme()
-    }
-  }
   function setCanvasSize(canvasEl) {
     canvasEl.width = window.innerWidth
     canvasEl.height = window.innerHeight
@@ -176,9 +171,9 @@ function createFireworks(config) {
           alpha: {
             value: 0,
             easing: 'linear',
-            duration: anime.random(600, 800)
+            duration: anime.random(1400, 1800)
           },
-          duration: anime.random(1200, 1800),
+          duration: anime.random(2000, 3000),
           easing: 'easeOutExpo',
           update: renderParticule
         },
