@@ -40,7 +40,7 @@ class MyDocument extends Document {
                 <canvas id="live2d2"></canvas>
                 <canvas id="live2d4"></canvas>
             </div>
-                     <script src="https://cdn.jsdelivr.net/gh/KelsAstell/Live2dOnWeb@1.0.1/dist/live2d_bundle.js"></script>
+                     <script src="https://cdn.jsdelivr.net/gh/KelsAstell/Live2dOnWeb@1.0.2/dist/live2d_bundle.js"></script>
                      <script async type="module" src="waifu-tips.js"></script>
         </body>
       </Html>

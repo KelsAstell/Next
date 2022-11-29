@@ -112,8 +112,8 @@ const $$ = (selector)=>{
 }
 const re = /x/;
 console.log("%c Powered by %c Chocolate and Love. ",
-            'color:#fff;background-color:blue;line-height:20px;border-radius: 5px 0 0 5px',
-            'color:#fff;background-color:orange;line-height:20px;border-radius: 0 5px 5px 0');
+            'color:#fff;background-color:#653100;line-height:20px;border-radius: 5px 0 0 5px',
+            'color:#fff;background-color:#a76b09;line-height:20px;border-radius: 0 5px 5px 0');
 const live2dId2 = 'live2d2';
 const live2dId4 = 'live2d4';
 const waifuTips = $$('#waifu-message');
@@ -144,7 +144,9 @@ function showMessage(text, timeout, flag) {
         if (Array.isArray(text))
             text = text[Math.floor(Math.random() * text.length + 1) - 1];
         if (live2d_settings.logMessageToConsole)
-            console.log('[Live2d]', text.replace(/<[^<>]+>/g, ''));
+            console.log('%c [Live2d]%c', text.replace(/<[^<>]+>/g, '',
+            'color:#fff;background-color:#653100;line-height:20px;border-radius: 5px 0 0 5px',
+            'color:#fff;background-color:#a76b09;line-height:20px;border-radius: 0 5px 5px 0'));
         if (flag)
             setSS('waifu-text', text);
         waifuTips.style.opacity = 1;
@@ -258,9 +260,11 @@ function initModel() {
     if (live2d_settings.tryWebp) {
         testWebP().then(r=>window.webpReady = r).then(()=>{
             if (window.webpReady === true)
-                console.log("[Live2d] Load WebP texture.");
+                console.log("%c [Live2d] %c Loaded WebP as texture. ",
+                'color:#fff;background-color:#653100;line-height:20px;border-radius: 5px 0 0 5px',
+                'color:#fff;background-color:#a76b09;line-height:20px;border-radius: 0 5px 5px 0');
             else
-                console.log("[Live2d] Your browser do not support WebP.");
+                console.warn("[Live2d] Sorry but WebP is not supported on your browser. ");
             loadModel(modelName);
         }
         );
@@ -274,7 +278,6 @@ function loadModel(modelName) {
         setLS('modelName', modelName);
     else
         setSS('modelName', modelName);
-    live2d_settings.debug && console.log(`[Live2d] Loading ${modelName}`);
     let modelVersion = 2;
     for (let model of live2d_models) {
         if (model.name === modelName) {
@@ -345,7 +348,7 @@ function loadTipsMessage(result) {
             else if (select)
                 mouseenterListener(select, tips);
             else
-                live2d_settings.debug && console.warn(`[WaifuTips] can not found element: ${tips.selector}`)
+                live2d_settings.debug && console.warn(`[ERROR] Can not found element: ${tips.selector}`)
         }
     }
     const addClickListener = ()=>{
@@ -364,7 +367,7 @@ function loadTipsMessage(result) {
                 }
                 )
             else
-                live2d_settings.debug && console.warn(`[WaifuTips] can not found element: ${tips.selector}`)
+                live2d_settings.debug && console.warn(`[ERROR] Can not found element: ${tips.selector}`)
         }
     }
     for (let tips of result.seasons) {
