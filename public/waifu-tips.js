@@ -144,7 +144,7 @@ function showMessage(text, timeout, flag) {
         if (Array.isArray(text))
             text = text[Math.floor(Math.random() * text.length + 1) - 1];
         if (live2d_settings.logMessageToConsole)
-            console.log('%c [Live2d]','color:#fff;background-color:#653100;line-height:20px;border-radius: 5px 0 0 5px', text.replace(/<[^<>]+>/g, ''));
+            console.log('%c [Live2d] ','color:#fff;background-color:#653100;line-height:20px;border-radius: 5px 5px 5px 5px', text.replace(/<[^<>]+>/g, ''));
         if (flag)
             setSS('waifu-text', text);
         waifuTips.style.opacity = 1;
