@@ -37,11 +37,11 @@ class MyDocument extends Document {
                     <span class="icon-about"></span>
                     <span class="icon-cross"></span>
                 </div>
-                <canvas id="live2d2"></canvas>
-                <canvas id="live2d4"></canvas>
+//                 <canvas id="live2d2"></canvas>
+//                 <canvas id="live2d4"></canvas>
             </div>
-                     <script src="https://cdn.jsdelivr.net/gh/KelsAstell/Live2dOnWeb@1.0.6/dist/live2d_bundle.js"></script>
-                     <script async type="module" src="waifu-tips.js"></script>
+//                      <script src="https://cdn.jsdelivr.net/gh/KelsAstell/Live2dOnWeb@1.0.6/dist/live2d_bundle.js"></script>
+//                      <script async type="module" src="waifu-tips.js"></script>
         </body>
       </Html>
     )
