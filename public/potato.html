@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>挖土豆？</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+      :root {
+          --bg: #87CEEB;
+          --card: #8B7355;
+          --accent: #5D4037;
+          --text: #FFFFFF;
+          --button: #7D5D3B;
+          --button-hover: #5D4037;
+          --border: #4A342A;
+          --highlight: #F44336;
+          /* Minecraft特有颜色 */
+          --dirt: #8B7355;
+          --grass: #7FED58;
+          --stone: #969696;
+          --wood: #8F7748;
+          --leaf: #4C9B27;
+          --water: #3F76E4;
+      }
+
+      html, body {
+          height: 100%;
+          margin: 0;
+          font-family: 'Noto Sans SC', sans-serif;
+          background: linear-gradient(180deg, var(--bg) 0%, var(--water) 100%);
+          color: var(--text);
+          background-image:
+                  linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+          background-size: 20px 20px;
+      }
+
+      .wrap {
+          max-width: 980px;
+          margin: 28px auto;
+          padding: 20px;
+          background: rgba(139, 115, 85, 0.85);
+          border: 4px solid var(--border);
+          border-radius: 0;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.3);
+          background-image: 
+            linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 75%),
+            linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 75%);
+          background-size: 10px 10px;
+          background-position: 0 0, 5px 5px;
+      }
+
+      header {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          flex-wrap: wrap;
+          border-bottom: 4px solid var(--border);
+          padding-bottom: 15px;
+          background: linear-gradient(to bottom, var(--grass) 0%, var(--grass) 50%, var(--dirt) 50%, var(--dirt) 100%);
+          padding: 10px 15px;
+          margin: -20px -20px 15px -20px;
+          border-bottom: 4px solid #000;
+      }
+
+      h1 {
+          margin: 0;
+          font-size: 22px;
+          color: #FFF;
+          text-shadow: 3px 3px 0 #000;
+          letter-spacing: 1px;
+          font-family: 'Press Start 2P', cursive;
+          font-weight: 700;
+          background: rgba(0, 0, 0, 0.7);
+          padding: 5px 10px;
+          border: 2px solid #000;
+      }
+
+      .game {
+          display: grid;
+          grid-template-columns: 1fr 360px;
+          gap: 18px;
+          margin-top: 18px;
+      }
+
+      .panel {
+          background: var(--card);
+          border-radius: 0;
+          padding: 16px;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0, 0, 0, 0.3);
+          border: 3px solid var(--border);
+          position: relative;
+          overflow: hidden;
+      }
+
+      /* 添加Minecraft方块纹理 */
+      .panel::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: 
+            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+            linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px);
+          background-size: 20px 20px;
+          pointer-events: none;
+      }
+
+      .potato-area {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+          position: relative;
+      }
+
+      .big-potato {
+          width: 220px;
+          height: 220px;
+          border-radius: 0;
+          background:
+                  linear-gradient(135deg, #8B4513 0%, #A0522D 25%, #CD853F 50%, #D2691E 75%, #8B4513 100%),
+                  repeating-linear-gradient(45deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 1px, transparent 1px, transparent 11px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 36px;
+          box-shadow:
+                  0 14px 20px rgba(0, 0, 0, 0.5),
+                  inset -8px -8px 15px rgba(0, 0, 0, 0.3),
+                  inset 8px 8px 15px rgba(255, 255, 255, 0.2);
+          cursor: pointer;
+          user-select: none;
+          position: relative;
+          border: 4px solid var(--border);
+      }
+
+      .big-potato::before {
+          content: "";
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          right: 10px;
+          bottom: 10px;
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          border-radius: 0;
+          pointer-events: none;
+      }
+
+      .stats {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+          flex-wrap: wrap;
+          background: rgba(0, 0, 0, 0.3);
+          padding: 10px;
+          border: 2px solid var(--border);
+          border-radius: 0;
+      }
+
+      .stat {
+          padding: 8px 12px;
+          border-radius: 0;
+          background: rgba(0, 0, 0, 0.5);
+          color: #FFF;
+          border: 1px solid var(--border);
+          font-family: 'Press Start 2P', cursive;
+          font-size: 10px;
+          text-shadow: 1px 1px 0 #000;
+      }
+
+      .shop {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+      }
+
+      .shop-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px;
+          border-radius: 0;
+          background: rgba(0, 0, 0, 0.3);
+          border: 2px solid var(--border);
+          position: relative;
+          overflow: hidden;
+      }
+
+      .shop-item::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: 
+            linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+            linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, rgba(0,0,0,0.05) 75%),
+            linear-gradient(-45deg, transparent 75%, rgba(0,0,0,0.05) 75%);
+          background-size: 10px 10px;
+          pointer-events: none;
+      }
+
+      .shop-item button {
+          background: var(--button);
+          border: 2px solid var(--border);
+          padding: 6px 10px;
+          border-radius: 0;
+          color: white;
+          cursor: pointer;
+          font-family: 'Press Start 2P', cursive;
+          font-size: 10px;
+          text-shadow: 1px 1px 0 #000;
+          min-width: 70px;
+      }
+
+      .shop-item button:hover {
+          background: var(--button-hover);
+      }
+
+      .shop-item button:disabled {
+          opacity: 0.45;
+          cursor: not-allowed;
+          background: #555;
+      }
+
+      .small {
+          font-size: 12px;
+          color: #FFF;
+          line-height: 1.4;
+          font-family: 'Noto Sans SC', sans-serif;
+          text-shadow: 1px 1px 0 #000;
+      }
+
+      .golden {
+          position: absolute;
+          border-radius: 0;
+          width: 64px;
+          height: 64px;
+          background:
+                  linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FF8C00 50%, #FF4500 75%, #FFD700 100%),
+                  repeating-linear-gradient(45deg, rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.1) 1px, transparent 1px, transparent 11px);
+          box-shadow:
+                  0 10px 20px rgba(255, 165, 0, 0.4),
+                  inset -5px -5px 10px rgba(0, 0, 0, 0.3),
+                  inset 5px 5px 10px rgba(255, 255, 255, 0.2);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          cursor: pointer;
+          border: 3px solid #B8860B;
+          font-size: 24px;
+          z-index: 10;
+          animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+          100% { transform: translateY(0px); }
+      }
+
+      footer {
+          margin-top: 14px;
+          font-size: 12px;
+          color: #FFF;
+          text-align: center;
+          border-top: 2px solid var(--border);
+          padding-top: 10px;
+          font-family: 'Noto Sans SC', sans-serif;
+          text-shadow: 1px 1px 0 #000;
+      }
+
+      button {
+          background: var(--button);
+          border: 2px solid var(--border);
+          padding: 8px 12px;
+          border-radius: 0;
+          color: white;
+          cursor: pointer;
+          font-family: 'Press Start 2P', cursive;
+          font-size: 10px;
+          text-shadow: 1px 1px 0 #000;
+      }
+
+      button:hover {
+          background: var(--button-hover);
+      }
+
+      h3 {
+          margin: 0 0 10px 0;
+          color: #FFF;
+          text-shadow: 2px 2px 0 #000;
+          font-size: 14px;
+          font-family: 'Press Start 2P', cursive;
+          font-weight: 700;
+      }
+
+      .grass-block {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          background: linear-gradient(to bottom, var(--grass) 0%, var(--grass) 50%, var(--dirt) 50%, var(--dirt) 100%);
+          border: 1px solid #000;
+          margin: 0 2px;
+          vertical-align: middle;
+      }
+
+      @media(max-width:920px) {
+          .game {
+              grid-template-columns: 1fr;
+          }
+      }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>挖土豆？<span class="grass-block"></span></h1>
+    <div class="small">点击土豆（或按 空格）获得土豆；使用土豆购买建筑与圣物。</div>
+  </header>
+
+  <div class="game">
+    <div class="panel">
+      <div class="potato-area" id="potatoArea">
+        <div id="bigPotato" class="big-potato">🥔<div style="position:absolute;bottom:10px;font-size:12px;color:#FFF;text-shadow:1px 1px 0 #000;">点击 +<span id="clickPower">1</span></div></div>
+
+        <div class="stats">
+          <div class="stat">土豆: <strong id="potatoes">0</strong></div>
+          <div class="stat">每秒产量: <strong id="pps">0</strong></div>
+          <div class="stat">总获得: <strong id="total">0</strong></div>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:8px">
+          <button id="saveBtn">保存</button>
+          <button id="resetBtn">重置</button>
+          <button id="exportBtn">导出进度</button>
+        </div>
+
+      </div>
+
+      <div style="margin-top:12px" class="small">圣物灵感来自：QQ机器人-DeluxeBOT，具有实际游戏效果（一次性购买）。</div>
+    </div>
+
+    <div class="panel">
+      <h3>商店 · 建筑</h3>
+      <div class="shop" id="shopBuildings"></div>
+
+      <h3 style="margin-top:14px">圣物（一次性升级）</h3>
+      <div class="shop" id="shopRelics"></div>
+    </div>
+  </div>
+
+  <footer>Code By Kels_Astell <span class="grass-block"></span> <span class="grass-block"></span> <span class="grass-block"></span></footer>
+</div>
+
+<script>
+  // 我的世界土豆点击游戏
+  const state = {
+    potatoes: 0,
+    totalPotatoes: 0,
+    pps: 0,
+    clickPower: 1,
+    lastSpacePress: 0, // 修复空格点击问题
+    buildings: [
+      { id: 'farmhand', name: '自律', baseCost: 20, cost: 20, amount: 0, pps: 0.2 },
+      { id: 'harvester', name: '收获机', baseCost: 120, cost: 120, amount: 0, pps: 1 },
+      { id: 'tractor', name: '拖拉机', baseCost: 500, cost: 500, amount: 0, pps: 3 },
+      { id: 'greenhouse', name: '温室大棚', baseCost: 2000, cost: 2000, amount: 0, pps: 10 },
+      { id: 'factory', name: '水培工厂', baseCost: 10000, cost: 10000, amount: 0, pps: 40 },
+      { id: 'drone', name: '农业无人机控制中心', baseCost: 50000, cost: 50000, amount: 0, pps: 150 },
+      { id: 'satellite', name: '狼农II号气象卫星', baseCost: 250000, cost: 250000, amount: 0, pps: 500 }
+    ],
+    relics: [
+      { id: 'toFutureYou', name: '致未来的你', desc: '在你将来的日子里收到祝福：永久 +1 点击力', cost: 150, bought: false, effect: s=>{ s.clickPower += 1 } },
+      { id: 'aForAll', name: '神爱世人', desc: '神为了成为神，而爱着大家；不过，正是因为爱着大家，有的人才走上了成为神明的道路. 永久 +1 点击力', cost: 1, bought: false, effect: s=>{ s.clickPower += 1 } },
+      { id: 'timingGod', name: '时机之神', desc: '时机之神偏爱你的土豆，+20% 每秒产量（乘法）', cost: 900, bought: false, effect: s=>{ s.ppsMultiplier = (s.ppsMultiplier||1) * 1.2 } },
+      { id: 'divineLove', name: '艾斯的赐福', desc: '土豆生长更快：所有建筑效率 +25%', cost: 1500, bought: false, effect: s=>{ s.buildingEfficiency = (s.buildingEfficiency||1) * 1.25 } },
+      { id: 'eternalSeed', name: '永恒之种', desc: '离线时也会收获（土豆的 30% 在离线时累计）', cost: 5000, bought: false, effect: s=>{ s.offlineBonus = 0.30 } },
+      { id: 'goldenBless', name: '金土豆之赐', desc: '提高金土豆出现概率并增加奖励', cost: 600, bought: false, effect: s=>{ s.goldenChanceBonus = (s.goldenChanceBonus||0) + 0.03; s.goldenRewardMultiplier = (s.goldenRewardMultiplier||1) + 0.5 } },
+      { id: 'frugalCharm', name: '节俭护符', desc: '购买建筑时价格下降 10%', cost: 3500, bought: false, effect: s=>{ s.costDiscount = (s.costDiscount||0) + 0.10 } },
+      { id: 'harvestRite', name: '收获仪式', desc: '每次点击获得额外固定土豆 +2', cost: 220, bought: false, effect: s=>{ s.clickFlatBonus = (s.clickFlatBonus||0) + 2 } },
+      { id: 'prestigeBeacon', name: '声望灯塔', desc: '永久增加每秒产量的 10%（累积生效）', cost: 1000, bought: false, effect: s=>{ s.ppsMultiplier = (s.ppsMultiplier||1) * 1.10 } }
+    ],
+    // gameplay modifiers
+    ppsMultiplier: 1,
+    buildingEfficiency: 1,
+    costDiscount: 0,
+    goldenChanceBonus: 0,
+    goldenRewardMultiplier: 1,
+    offlineBonus: 0,
+    clickFlatBonus: 0,
+    lastTick: Date.now()
+  }
+
+  // persistence
+  const SAVE_KEY = 'mc_potato_clicker_v2'
+  function save(){
+    try{
+      const toSave = JSON.parse(JSON.stringify(state));
+      // Remove functions before saving
+      delete toSave.relics.forEach(r => delete r.effect);
+      localStorage.setItem(SAVE_KEY, JSON.stringify(toSave));
+    }catch(e){console.warn('save err', e)}
+  }
+
+  function load(){
+    const s = localStorage.getItem(SAVE_KEY);
+    if(!s) return;
+    try{
+      const parsed = JSON.parse(s);
+      // merge safely
+      Object.assign(state, parsed);
+      // ensure arrays preserve functions and defaults
+      if(!state.relics || !Array.isArray(state.relics)) state.relics = [];
+      // when loading from older saves, rebuild missing fields
+      state.ppsMultiplier = state.ppsMultiplier || 1
+      state.buildingEfficiency = state.buildingEfficiency || 1
+      state.costDiscount = state.costDiscount || 0
+      state.goldenChanceBonus = state.goldenChanceBonus || 0
+      state.goldenRewardMultiplier = state.goldenRewardMultiplier || 1
+      state.offlineBonus = state.offlineBonus || 0
+      state.clickFlatBonus = state.clickFlatBonus || 0
+    }catch(e){ console.warn('load failed', e) }
+  }
+
+  // format
+  function fmt(n){
+    if(n < 1000) return Math.floor(n*100)/100;
+    const units=['','K','M','B','T'];
+    let i=0;
+    let v=n;
+    while(v>=1000 && i<units.length-1){
+      v/=1000;
+      i++
+    }
+    return (Math.floor(v*100)/100)+units[i]
+  }
+
+  // UI
+  function updateUI(){
+    document.getElementById('potatoes').textContent = fmt(state.potatoes)
+    document.getElementById('total').textContent = fmt(state.totalPotatoes)
+    document.getElementById('pps').textContent = fmt(state.pps * (state.ppsMultiplier||1))
+    document.getElementById('clickPower').textContent = state.clickPower + (state.clickFlatBonus||0)
+
+    // buildings
+    const shop = document.getElementById('shopBuildings');
+    shop.innerHTML = ''
+    state.buildings.forEach(b=>{
+      const effectiveCost = Math.ceil(b.cost * (1 - (state.costDiscount||0)))
+      const div = document.createElement('div');
+      div.className='shop-item'
+      div.innerHTML = `<div><div><strong>${b.name}</strong></div><div class="small">每秒 ${fmt(b.pps * (state.buildingEfficiency||1))} 土豆 · 已购 ${b.amount}</div></div><div><div>成本: <span>${fmt(effectiveCost)}</span></div><button ${state.potatoes < effectiveCost ? 'disabled' : ''} data-id="${b.id}">购买</button></div>`
+      shop.appendChild(div)
+    })
+
+    // relics
+    const relicArea = document.getElementById('shopRelics');
+    relicArea.innerHTML = ''
+    state.relics.filter(r => !r.hidden).forEach(r=>{ // Filter out hidden relics
+      const div = document.createElement('div');
+      div.className='shop-item'
+      const boughtMark = r.bought ? '（已购买）' : ''
+      div.innerHTML = `<div style="max-width:220px"><div><strong>${r.name}</strong> ${boughtMark}</div><div class="small">${r.desc}</div></div><div><div>成本: <span>${fmt(r.cost)}</span></div><button ${r.bought || state.potatoes < r.cost ? 'disabled' : ''} data-relic="${r.id}">${r.bought ? '已拥有' : '购买'}</button></div>`
+      relicArea.appendChild(div)
+    })
+  }
+
+  // calculate pps
+  function recalcPPS(){
+    let base = 0;
+    state.buildings.forEach(b=> base += b.amount * (b.pps * (state.buildingEfficiency||1)));
+    state.pps = base
+  };
+
+  // buy building
+  function buyBuilding(id){
+    const b = state.buildings.find(x=>x.id===id);
+    if(!b) return;
+    const effectiveCost = Math.ceil(b.cost * (1 - (state.costDiscount||0)));
+    if(state.potatoes >= effectiveCost){
+      state.potatoes -= effectiveCost;
+      b.amount += 1;
+      b.cost = Math.ceil(b.cost * 1.15);
+      recalcPPS();
+      save();
+      updateUI();
+    }
+  }
+
+  // buy relic
+  function buyRelic(id){
+    const r = state.relics.find(x=>x.id===id);
+    if(!r || r.bought) return;
+    if(state.potatoes >= r.cost){
+      state.potatoes -= r.cost;
+      r.bought = true;
+      // apply effect
+      try{ r.effect(state) }catch(e){ console.warn('relic effect error', e) }
+      recalcPPS();
+      save();
+      updateUI();
+      alert(`你获得了圣物：${r.name}！`)
+    }
+  }
+
+  // tick
+  function tick(){
+    const now = Date.now();
+    const dt = (now - state.lastTick)/1000;
+    state.lastTick = now
+    const gain = state.pps * (state.ppsMultiplier||1) * dt
+    state.potatoes += gain;
+    state.totalPotatoes += gain
+    // golden potato chance
+    maybeSpawnGolden(dt)
+    updateUI()
+  }
+
+  // golden potato
+  let goldenTimeout = null
+  function maybeSpawnGolden(dt){
+    const baseChancePerSecond = 0.01;
+    const chance = 1 - Math.pow(1 - (baseChancePerSecond + (state.goldenChanceBonus||0)), dt)
+    if(Math.random() < chance && !document.querySelector('.golden')) spawnGolden()
+  }
+  function spawnGolden(){
+    const area = document.getElementById('potatoArea');
+    const g = document.createElement('div');
+    g.className='golden';
+    g.textContent='🥔✨';
+    g.style.left = (40 + Math.random()*260) + 'px';
+    g.style.top = (30 + Math.random()*120) + 'px';
+    g.addEventListener('click', ()=>{
+      const baseReward = Math.max(50, Math.floor(state.totalPotatoes*0.02));
+      const reward = Math.floor(baseReward * (state.goldenRewardMultiplier||1));
+      state.potatoes += reward;
+      state.totalPotatoes += reward;
+      save();
+      removeGolden(g);
+      alert('触发金土豆！获得 ' + fmt(reward) + ' 土豆')
+    })
+    area.appendChild(g);
+    goldenTimeout = setTimeout(()=> removeGolden(g), 10000)
+  }
+  function removeGolden(el){
+    if(el && el.parentNode) el.parentNode.removeChild(el);
+    if(goldenTimeout){
+      clearTimeout(goldenTimeout);
+      goldenTimeout = null
+    }
+  }
+
+  // click handler
+  document.getElementById('bigPotato').addEventListener('click', ()=>{
+    const flat = state.clickFlatBonus || 0;
+    const gain = state.clickPower + flat;
+    state.potatoes += gain;
+    state.totalPotatoes += gain;
+    save();
+    updateUI();
+    const el = document.getElementById('bigPotato');
+    el.style.transform='scale(0.96)';
+    setTimeout(()=> el.style.transform='', 80)
+  })
+
+  // delegation for shop
+  document.addEventListener('click', (e)=>{
+    const bid = e.target.getAttribute && e.target.getAttribute('data-id');
+    if(bid) {
+      buyBuilding(bid);
+      updateUI();
+    }
+    const rid = e.target.getAttribute && e.target.getAttribute('data-relic');
+    if(rid) {
+      buyRelic(rid);
+      updateUI();
+    }
+  })
+
+  // save/reset/export
+  document.getElementById('saveBtn').addEventListener('click', ()=>{
+    save();
+    alert('已保存')
+  })
+  document.getElementById('resetBtn').addEventListener('click', ()=>{
+    if(confirm('确认重置进度？')){
+      localStorage.removeItem(SAVE_KEY);
+      location.reload()
+    }
+  })
+  document.getElementById('exportBtn').addEventListener('click', ()=>{
+    const data = JSON.stringify(state);
+    const blob = new Blob([data], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;
+    a.download='potato-save.json';
+    a.click();
+    URL.revokeObjectURL(url)
+  })
+
+  // keyboard shortcuts - 修复空格点击问题
+  window.addEventListener('keydown', e=>{
+    if(e.key === ' ') {
+      const now = Date.now();
+      if (now - state.lastSpacePress > 500) { // 最多每0.5秒一次
+        document.getElementById('bigPotato').click();
+        state.lastSpacePress = now;
+      }
+      e.preventDefault()
+    }
+    if(e.key === '1') buyBuilding('farmhand');
+    if(e.key === '2') buyBuilding('harvester');
+    if(e.key === '3') buyBuilding('tractor');
+    if(e.key === '4') buyBuilding('greenhouse');
+  })
+
+  // init
+  function init(){
+    load();
+    // ensure relic effect functions are present after load
+    // if relics missing (older save), rebuild default relics while preserving bought flags if possible
+    const defaultRelics = {
+      toFutureYou: {cost:150},
+      aForAll: {cost:1},
+      timingGod:{cost:900},
+      divineLove:{cost:1500},
+      eternalSeed:{cost:5000},
+      goldenBless:{cost:600},
+      frugalCharm:{cost:3500},
+      harvestRite:{cost:220},
+      prestigeBeacon:{cost:1000}
+    }
+    // if loaded relics are present, reconstruct effect functions
+    const mapping = {
+      toFutureYou: s=>{ s.clickPower += 1 },
+      aForAll: s=>{ s.clickPower += 1 },
+      timingGod: s=>{ s.ppsMultiplier = (s.ppsMultiplier||1) * 1.2 },
+      divineLove: s=>{ s.buildingEfficiency = (s.buildingEfficiency||1) * 1.25 },
+      eternalSeed: s=>{ s.offlineBonus = 0.30 },
+      goldenBless: s=>{ s.goldenChanceBonus = (s.goldenChanceBonus||0) + 0.03; s.goldenRewardMultiplier = (s.goldenRewardMultiplier||1) + 0.5 },
+      frugalCharm: s=>{ s.costDiscount = (s.costDiscount||0) + 0.10 },
+      harvestRite: s=>{ s.clickFlatBonus = (s.clickFlatBonus||0) + 2 },
+      prestigeBeacon: s=>{ s.ppsMultiplier = (s.ppsMultiplier||1) * 1.10 }
+    }
+    if(!state.relics || state.relics.length === 0){
+      // nothing loaded -> defaults already present
+    } else {
+      state.relics.forEach(r=>{ if(mapping[r.id]) r.effect = mapping[r.id]; })
+    }
+
+    recalcPPS();
+    updateUI();
+    setInterval(tick, 200);
+    setInterval(save, 5000)
+
+    // offline gain: if lastTick saved, give some offline income
+    const now = Date.now();
+    const last = state.lastTick || now;
+    const secondsAway = Math.floor((now - last)/1000);
+    if(secondsAway > 5 && state.offlineBonus && state.totalPotatoes > 0){
+      const offlineGain = state.totalPotatoes * state.offlineBonus;
+      state.potatoes += offlineGain;
+      state.totalPotatoes += offlineGain;
+      alert('离线收益：获得 ' + fmt(Math.floor(offlineGain)) + ' 土豆（来自圣物）')
+    }
+    state.lastTick = now
+  }
+
+  // expose for debugging
+  window.pc = { state, save, load, buyBuilding, buyRelic }
+
+  init()
+</script>
+</body>
+</html>
