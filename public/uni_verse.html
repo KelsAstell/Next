@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>世界参数</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    background: #0b0d17;
+    color: #eaeaea;
+    font-family: system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.container {
+    width: 420px;
+}
+
+h1 {
+    text-align: center;
+    letter-spacing: 4px;
+}
+
+.display {
+    text-align: center;
+    font-size: 36px;
+    margin: 20px 0;
+    color: #4cc9f0;
+}
+
+.control-group {
+    margin: 18px 0;
+}
+
+.slider-container,
+.switch-container,
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.slider-label,
+.switch-label,
+.input-label {
+    width: 24px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.value-display {
+    margin-left: auto;
+    font-size: 14px;
+    color: #aaa;
+}
+
+input[type="range"] {
+    flex: 1;
+}
+
+.switch {
+    position: relative;
+    width: 42px;
+    height: 22px;
+}
+.switch input {
+    display: none;
+}
+.switch span {
+    position: absolute;
+    cursor: pointer;
+    background: #444;
+    border-radius: 22px;
+    inset: 0;
+}
+.switch span::before {
+    content: "";
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    top: 2px;
+    background: #fff;
+    border-radius: 50%;
+    transition: .2s;
+}
+.switch input:checked + span::before {
+    transform: translateX(20px);
+}
+
+.pi-placeholder {
+    color: transparent !important;
+    text-shadow: 0 0 0 #f72585;
+    font-family: 'Courier New', monospace;
+    width: 100%;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>世界参数</h1>
+
+<div class="display" id="display">12345678</div>
+
+<div class="control-group">
+    <div class="slider-container">
+        <div class="slider-label">c</div>
+        <input type="range" id="lightSpeed" min="1" max="1000" value="299">
+        <span class="value-display" id="lightSpeedValue"></span>
+    </div>
+</div>
+
+<div class="control-group">
+    <div class="slider-container">
+        <div class="slider-label">g</div>
+        <input type="range" id="gravity" min="1" max="100" step="0.1" value="9">
+        <span class="value-display" id="gravityValue"></span>
+    </div>
+</div>
+
+<div class="control-group">
+    <div class="switch-container">
+        <div class="switch-label">P</div>
+        <label class="switch">
+            <input type="checkbox" id="parity" checked>
+            <span></span>
+        </label>
+    </div>
+</div>
+
+<div class="control-group">
+    <div class="switch-container">
+        <div class="switch-label">E</div>
+        <label class="switch">
+            <input type="checkbox" id="energy" checked>
+            <span></span>
+        </label>
+    </div>
+</div>
+
+<div class="control-group">
+    <div class="input-container">
+        <div class="input-label">π</div>
+        <input type="text" value="???" readonly class="pi-placeholder">
+    </div>
+</div>
+
+</div>
+
+<script>
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+    const k = e.keyCode;
+    if (k === 123 || (e.ctrlKey && e.shiftKey && [73,74,67].includes(k)) || (e.ctrlKey && k === 85)) {
+        e.preventDefault();
+    }
+});
+
+
+function checkUniverseParams() {
+    if (lightSpeed.value == 300 && gravity.value == 10) {
+        display.textContent = "82817336";
+    }
+    return false;
+}
+
+
+(function () {
+
+    const display = document.getElementById('display');
+    const lightSpeed = document.getElementById('lightSpeed');
+    const gravity = document.getElementById('gravity');
+    const parity = document.getElementById('parity');
+    const energy = document.getElementById('energy');
+    const lv = document.getElementById('lightSpeedValue');
+    const gv = document.getElementById('gravityValue');
+
+    let CONST = [299, 9.8, 31415926];
+    let state = [0,0,0,0];
+
+    function near(a,b,e){ return Math.abs(a-b) < e }
+
+    function sync(){
+        state[0] = near(+lightSpeed.value, CONST[0], 1);
+        state[1] = near(+gravity.value, CONST[1], 0.5);
+        state[2] = parity.checked ? 0 : 1;
+        state[3] = energy.checked ? 1 : 0;
+    }
+
+    function collapse(){
+        if (state.reduce((a,b)=>a&b,1)) {
+            display.textContent = CONST[2];
+        } else {
+            display.textContent = Math.floor(Math.random()*9e7+1e7);
+        }
+    }
+
+    function updateText(){
+        lv.textContent = lightSpeed.value + " ×10⁶ m/s";
+        gv.textContent = (+gravity.value).toFixed(1) + " m/s²";
+    }
+
+    [lightSpeed, gravity].forEach(el=>{
+        el.addEventListener('input', ()=>{
+            sync();
+            updateText();
+            setTimeout(collapse, 200 + Math.random()*300);
+        });
+    });
+
+    [parity, energy].forEach(el=>{
+        el.addEventListener('change', ()=>{
+            sync();
+            setTimeout(collapse, 300);
+        });
+    });
+
+    updateText();
+    sync();
+    collapse();
+
+    setInterval(()=>{
+        if (window.outerWidth - window.innerWidth > 160) {
+            CONST[0] = 300;
+            CONST[1] = 10;
+        }
+    },500);
+
+})();
+</script>
+
+</body>
+</html>
