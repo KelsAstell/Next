@@ -114,13 +114,7 @@ const LayoutIndex = props => {
                 </>
             )}
 
-            {/* 公告 */}
-            {siteConfig('PROXIO_ANNOUNCEMENT_ENABLE', true, CONFIG) && <Announcement
-                post={props?.notice}
-                className={
-                    'announncement text-center py-16'
-                } />
-                }
+            
 
             {/* 团队介绍 */}
             {siteConfig('PROXIO_ABOUT_ENABLE', true, CONFIG) && <Team />}
