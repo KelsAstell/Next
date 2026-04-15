@@ -10,9 +10,8 @@ const CONFIG = {
   PROXIO_HERO_TITLE_1: '大以巴狼艾斯', // 英雄区文字
   PROXIO_HERO_TITLE_2: '喜欢巧克力的恶魔狼狼', // 英雄区文字
   // 英雄区两个按钮，如果TEXT留空则隐藏按钮
-  PROXIO_HERO_BUTTON_1_TEXT: '', // 英雄区按钮
-  PROXIO_HERO_BUTTON_1_URL:
-    '', // 英雄区按钮
+  PROXIO_HERO_BUTTON_1_TEXT: 'DeluxeWiki', // 英雄区按钮
+  PROXIO_HERO_BUTTON_1_URL: 'https://deluxebot.wingmark.cn', // 英雄区按钮
   PROXIO_HERO_BUTTON_2_TEXT: 'Github', // 英雄区按钮
   PROXIO_HERO_BUTTON_2_URL: 'https://github.com/KelsAstell', // 英雄区按钮
   PROXIO_HERO_BUTTON_2_ICON: '/images/starter/github-mark.svg', // 英雄区按钮2的图标，不需要则留空
@@ -63,26 +62,26 @@ const CONFIG = {
   PROXIO_FEATURE_BUTTON_URL: 'https://github.com/tangly1024/NotionNext', // 按钮跳转
 
   // 首页生涯区块
-  PROXIO_CAREER_ENABLE: false, // 区块开关
+  PROXIO_CAREER_ENABLE: true, // 区块开关
   PROXIO_CAREER_TITLE: '生涯',
-  PROXIO_CAREER_TEXT: '以下是我的职业生涯',
+  PROXIO_CAREER_TEXT: '我以前做过这些',
 
   // 生涯内容卡牌 ，title是标题 ，bio是备注，text是详情
   PROXIO_CAREERS: [
     {
-      title: 'Freelance Architect',
-      bio: '2016-2020',
-      text: 'As a freelance architect, I worked on a range of residential and commercial projects, balancing form and function. I collaborated with clients and contractors to transform concepts into reality, ensuring each design was both aesthetically pleasing and structurally sound.'
+      title: '游戏《绿洲计划》',
+      bio: '2016-2026',
+      text: 'Steam免费游戏分区多数好评，单日话题榜Top50.'
     },
     {
-      title: 'Product Designer at Spotify',
-      bio: '2020-2022',
-      text: 'At Spotify, I helped shape innovative features for millions of users globally. My focus was on creating seamless music discovery experiences, enhancing user interfaces, and optimizing cross-platform navigation, which led to an improved product flow and increased user satisfaction.'
+      title: 'DeluxeBOT机器人',
+      bio: '2022-2026',
+      text: '伟大，无需多言.'
     },
     {
-      title: 'Freelance Product Designer',
-      bio: '2022-Now',
-      text: 'Now I design user-centric products that align with client visions. As a freelance product designer, I collaborate with startups and established companies, crafting solutions that elevate user experiences and increase engagement across both digital and physical interfaces.'
+      title: '『时机』之神',
+      bio: '2025-Now',
+      text: '成功让某不愿透露姓名的小动物从三个渠道购买的三包嗷呜嗷呜奇美拉盲袋出了完全一样的内容.'
     }
   ],
 
@@ -236,7 +235,7 @@ const CONFIG = {
 
   // 404页面的提示语
   PROXIO_404_TITLE: '我们似乎找不到您要找的页面。',
-  PROXIO_404_TEXT: '抱歉！您要查找的页面不存在。可能已经移动或删除。',
+  PROXIO_404_TEXT: '抱歉！您要查找的页面不存在。可能已经被艾斯吃了。',
   PROXIO_404_BACK: '回到主页',
 
   // 页面底部的行动呼吁模块
@@ -250,7 +249,7 @@ const CONFIG = {
   PROXIO_CTA_BUTTON_TEXT: '联系我',
 
   PROXIO_POST_REDIRECT_ENABLE: true, // 默認開啟重定向
-  PROXIO_POST_REDIRECT_URL: 'https://deluxebot.wingmark.cn', // 重定向域名
+  PROXIO_POST_REDIRECT_URL: 'https://emowolf.fun', // 重定向域名
   PROXIO_NEWSLETTER: process.env.NEXT_PUBLIC_THEME_PROXIO_NEWSLETTER || false // 是否开启邮件订阅 请先配置mailchimp功能 https://docs.tangly1024.com/article/notion-next-mailchimp
 }
 export default CONFIG
