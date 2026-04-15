@@ -180,7 +180,7 @@ const CONFIG = {
   PROXIO_ABOUT_TEXT_1: '大以巴狼艾斯',
   PROXIO_ABOUT_TEXT_2:
     '相遇或离去，一切看似偶然的，都是“时机”的手笔。 ————『时机』之神',
-  PROXIO_ABOUT_PHOTO_URL: '/avatar.png',
+  PROXIO_ABOUT_PHOTO_URL: '/avatar.webp',
   PROXIO_ABOUT_KEY_1: '网站已运营',
   PROXIO_ABOUT_VAL_1: '5年+',
   PROXIO_ABOUT_KEY_2: '开发项目',
